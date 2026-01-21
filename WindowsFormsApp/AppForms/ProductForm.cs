@@ -29,12 +29,12 @@ namespace Cosmetic.AppForms
 
         private void ShowOrderButton()
         {
-            buttonOrders.Visible = (ContextManager.user.isAdmin() || ContextManager.user.isManager());
+            buttonOrders.Visible = (ContextManager.user.IsAdmin() || ContextManager.user.IsManager());
         }
 
         private void ShowAddProductButton()
         {
-            buttonAdd.Visible = ContextManager.user.isAdmin();
+            buttonAdd.Visible = ContextManager.user.IsAdmin();
         }
 
         private void ProductForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -143,6 +143,13 @@ namespace Cosmetic.AppForms
             {
                 RefreshList();
             }
+        }
+
+        private void buttonOrders_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            OrderForm orderForm = new OrderForm();
+            orderForm.Show();
         }
     }
 }

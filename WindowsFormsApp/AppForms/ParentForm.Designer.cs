@@ -87,7 +87,7 @@
             // buttonExit
             // 
             this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(102)))), ((int)(((byte)(0)))));
-            this.buttonExit.Location = new System.Drawing.Point(1099, 30);
+            this.buttonExit.Location = new System.Drawing.Point(1099, 13);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(87, 31);
             this.buttonExit.TabIndex = 2;

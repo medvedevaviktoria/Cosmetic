@@ -89,6 +89,7 @@
             this.buttonOrders.TabIndex = 2;
             this.buttonOrders.Text = "Заказы";
             this.buttonOrders.UseVisualStyleBackColor = true;
+            this.buttonOrders.Click += new System.EventHandler(this.buttonOrders_Click);
             // 
             // buttonAdd
             // 

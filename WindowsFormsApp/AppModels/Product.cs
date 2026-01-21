@@ -10,7 +10,7 @@
     public partial class Product
     {
 
-        public bool isNew()
+        public bool IsNew()
         {
             return (IdProduct == 0);
         }

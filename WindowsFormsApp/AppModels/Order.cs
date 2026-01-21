@@ -1,4 +1,4 @@
-namespace Cosmetic.AppModels
+﻿namespace Cosmetic.AppModels
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +9,11 @@ namespace Cosmetic.AppModels
     [Table("Order")]
     public partial class Order
     {
+        public bool IsNew()
+        {
+            return (IdOrder == 0);
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
@@ -34,7 +39,7 @@ namespace Cosmetic.AppModels
 
         public virtual Office Office { get; set; }
 
-        public virtual OrderStatu OrderStatu { get; set; }
+        public virtual OrderStatu OrderStatus { get; set; }
 
         public virtual User User { get; set; }
 

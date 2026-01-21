@@ -10,12 +10,12 @@
     public partial class User
     {
 
-        public bool isAdmin()
+        public bool IsAdmin()
         {
             return this.Role.IdRole == 1;
         }
 
-        public bool isManager()
+        public bool IsManager()
         {
             return this.Role.IdRole == 2;
         }

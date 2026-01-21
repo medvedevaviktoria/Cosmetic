@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
@@ -31,17 +31,20 @@ namespace Cosmetic.AppModels
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.CategoryId);
+                .HasForeignKey(e => e.CategoryId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Manufacturer>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Manufacturer)
-                .HasForeignKey(e => e.ManufacturerId);
+                .HasForeignKey(e => e.ManufacturerId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Office>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Office)
-                .HasForeignKey(e => e.OfficeId);
+                .HasForeignKey(e => e.OfficeId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order>()
                 .HasMany(e => e.OrderProducts)
@@ -50,28 +53,33 @@ namespace Cosmetic.AppModels
 
             modelBuilder.Entity<OrderStatu>()
                 .HasMany(e => e.Orders)
-                .WithRequired(e => e.OrderStatu)
-                .HasForeignKey(e => e.OrderStatusId);
+                .WithRequired(e => e.OrderStatus)
+                .HasForeignKey(e => e.OrderStatusId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
                 .HasMany(e => e.OrderProducts)
                 .WithRequired(e => e.Product)
-                .HasForeignKey(e => e.ProductId);
+                .HasForeignKey(e => e.ProductId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ProductName>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.ProductName)
-                .HasForeignKey(e => e.ProductNameId);
+                .HasForeignKey(e => e.ProductNameId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.Users)
                 .WithRequired(e => e.Role)
-                .HasForeignKey(e => e.RoleId);
+                .HasForeignKey(e => e.RoleId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Supplier>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Supplier)
-                .HasForeignKey(e => e.SupplierId);
+                .HasForeignKey(e => e.SupplierId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UnitOfMeasure>()
                 .Property(e => e.UnitOfMeasureName)
@@ -80,12 +88,14 @@ namespace Cosmetic.AppModels
             modelBuilder.Entity<UnitOfMeasure>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.UnitOfMeasure)
-                .HasForeignKey(e => e.UnitOfMeasureId);
+                .HasForeignKey(e => e.UnitOfMeasureId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.UserId);
+                .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

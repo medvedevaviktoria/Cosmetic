@@ -54,6 +54,7 @@
             this.pictureBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxImage.TabIndex = 0;
             this.pictureBoxImage.TabStop = false;
+            this.pictureBoxImage.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // labelPrice
             // 
@@ -65,6 +66,7 @@
             this.labelPrice.Size = new System.Drawing.Size(47, 19);
             this.labelPrice.TabIndex = 8;
             this.labelPrice.Text = "Цена:";
+            this.labelPrice.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // labelManufacturer
             // 
@@ -76,6 +78,7 @@
             this.labelManufacturer.Size = new System.Drawing.Size(119, 19);
             this.labelManufacturer.TabIndex = 7;
             this.labelManufacturer.Text = "Производитель:";
+            this.labelManufacturer.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // labelDescription
             // 
@@ -87,6 +90,7 @@
             this.labelDescription.Size = new System.Drawing.Size(124, 19);
             this.labelDescription.TabIndex = 6;
             this.labelDescription.Text = "Описание товара";
+            this.labelDescription.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // labelName
             // 
@@ -98,6 +102,7 @@
             this.labelName.Size = new System.Drawing.Size(156, 19);
             this.labelName.TabIndex = 5;
             this.labelName.Text = "Наименование товара";
+            this.labelName.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // panel1
             // 
@@ -111,6 +116,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(649, 115);
             this.panel1.TabIndex = 9;
+            this.panel1.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // labelOldPrice
             // 
@@ -123,6 +129,7 @@
             this.labelOldPrice.Size = new System.Drawing.Size(39, 18);
             this.labelOldPrice.TabIndex = 10;
             this.labelOldPrice.Text = "Цена";
+            this.labelOldPrice.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // buttonDelete
             // 
@@ -133,6 +140,7 @@
             this.buttonDelete.TabIndex = 9;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // panel2
             // 
@@ -143,6 +151,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(134, 115);
             this.panel2.TabIndex = 10;
+            this.panel2.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // labelDiscount
             // 
@@ -153,6 +162,7 @@
             this.labelDiscount.TabIndex = 1;
             this.labelDiscount.Text = "%";
             this.labelDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelDiscount.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // label5
             // 
@@ -163,6 +173,7 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Размер скидки";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // labelId
             // 
@@ -174,6 +185,7 @@
             this.labelId.Size = new System.Drawing.Size(20, 15);
             this.labelId.TabIndex = 10;
             this.labelId.Text = "id:";
+            this.labelId.Click += new System.EventHandler(this.ProductUserControl_Click);
             // 
             // ProductUserControl
             // 
@@ -189,6 +201,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ProductUserControl";
             this.Size = new System.Drawing.Size(988, 145);
+            this.Click += new System.EventHandler(this.ProductUserControl_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

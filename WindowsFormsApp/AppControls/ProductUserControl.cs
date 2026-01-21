@@ -1,10 +1,14 @@
 ﻿using Cosmetic.AppConstants;
+using Cosmetic.AppForms;
 using Cosmetic.AppModels;
 using Cosmetic.AppServices;
 using System;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using WindowsFormsApp;
 
 namespace Cosmetic.AppControls
 {
@@ -62,7 +66,7 @@ namespace Cosmetic.AppControls
 
         private void ShowDeleteButton()
         {
-            buttonDelete.Visible = ContextManager.user.isAdmin();
+            buttonDelete.Visible = ContextManager.user.IsAdmin();
         }
 
         private Image GetImage()
@@ -70,13 +74,51 @@ namespace Cosmetic.AppControls
             Image img;
             try
             {
-                img = Image.FromFile(FileManager.GetImagePath(_product.Photo));
+                img = new Bitmap(Image.FromFile(FileManager.GetImagePath(_product.Photo)));
             }
             catch (FileNotFoundException ex)
             {
                 img = Image.FromFile(FileManager.GetImagePath(FilePath.defaultPicture));
             }
             return img;
+        }
+
+        private void ProductUserControl_Click(object sender, EventArgs e)
+        {
+            if (!ContextManager.user.IsAdmin())
+            {
+                return;
+            }
+            
+            CreateUpdateProductForm сreateUpdateProductForm = new CreateUpdateProductForm(_product);
+
+            DialogResult saved = сreateUpdateProductForm.ShowDialog();
+            if (saved == DialogResult.OK)
+            {
+                ContextManager.productForm.RefreshList();
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult toBeDeleted = MessageBox.Show("Удалить?", "Удалить?", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            
+            if (toBeDeleted == DialogResult.OK)
+            {
+                Product product = Program.context.Products.Where(p => p.IdProduct == _product.IdProduct).FirstOrDefault();
+
+                try
+                {
+                    Program.context.Products.Remove(_product);
+                    Program.context.SaveChanges();
+                    ContextManager.productForm.RefreshList();
+                    FileManager.DeleteFile(_product.Photo);
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show("Товар заказан. Его нельзя удалить.", "Товар заказан. Его нельзя удалить.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

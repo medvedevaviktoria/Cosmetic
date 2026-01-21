@@ -68,6 +68,8 @@
             this.manufacturerTableAdapter = new Cosmetic.medvedeva_vy_cosmeticDataSetTableAdapters.ManufacturerTableAdapter();
             this.supplierTableAdapter = new Cosmetic.medvedeva_vy_cosmeticDataSetTableAdapters.SupplierTableAdapter();
             this.categoryTableAdapter = new Cosmetic.medvedeva_vy_cosmeticDataSetTableAdapters.CategoryTableAdapter();
+            this.openFileDialogButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             articleLabel = new System.Windows.Forms.Label();
             productNameIdLabel = new System.Windows.Forms.Label();
             unitOfMeasureIdLabel = new System.Windows.Forms.Label();
@@ -100,6 +102,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.openFileDialogButton);
             this.splitContainer1.Panel2.Controls.Add(this.buttonSave);
             this.splitContainer1.Panel2.Controls.Add(articleLabel);
             this.splitContainer1.Panel2.Controls.Add(this.articleTextBox);
@@ -285,6 +288,7 @@
             this.articleTextBox.Name = "articleTextBox";
             this.articleTextBox.Size = new System.Drawing.Size(340, 26);
             this.articleTextBox.TabIndex = 1;
+            this.articleTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateGeneral);
             // 
             // productNameIdComboBox
             // 
@@ -299,6 +303,7 @@
             this.productNameIdComboBox.Size = new System.Drawing.Size(340, 26);
             this.productNameIdComboBox.TabIndex = 3;
             this.productNameIdComboBox.ValueMember = "IdProductName";
+            this.productNameIdComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateGeneral);
             // 
             // productNameBindingSource
             // 
@@ -318,6 +323,7 @@
             this.unitOfMeasureIdComboBox.Size = new System.Drawing.Size(340, 26);
             this.unitOfMeasureIdComboBox.TabIndex = 5;
             this.unitOfMeasureIdComboBox.ValueMember = "IdUnitOfMeasure";
+            this.unitOfMeasureIdComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateGeneral);
             // 
             // unitOfMeasureBindingSource
             // 
@@ -332,6 +338,7 @@
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(340, 26);
             this.priceTextBox.TabIndex = 7;
+            this.priceTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.priceTextBox_Validating);
             // 
             // maxProductDiscountAmountNumericUpDown
             // 
@@ -339,6 +346,7 @@
             this.maxProductDiscountAmountNumericUpDown.Font = new System.Drawing.Font("Comic Sans MS", 10F);
             this.maxProductDiscountAmountNumericUpDown.Location = new System.Drawing.Point(600, 197);
             this.maxProductDiscountAmountNumericUpDown.Name = "maxProductDiscountAmountNumericUpDown";
+            this.maxProductDiscountAmountNumericUpDown.ReadOnly = true;
             this.maxProductDiscountAmountNumericUpDown.Size = new System.Drawing.Size(340, 26);
             this.maxProductDiscountAmountNumericUpDown.TabIndex = 9;
             // 
@@ -355,6 +363,7 @@
             this.manufacturerIdComboBox.Size = new System.Drawing.Size(340, 26);
             this.manufacturerIdComboBox.TabIndex = 11;
             this.manufacturerIdComboBox.ValueMember = "IdManufacturer";
+            this.manufacturerIdComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateGeneral);
             // 
             // manufacturerBindingSource
             // 
@@ -374,6 +383,7 @@
             this.supplierIdComboBox.Size = new System.Drawing.Size(340, 26);
             this.supplierIdComboBox.TabIndex = 13;
             this.supplierIdComboBox.ValueMember = "IdSupplier";
+            this.supplierIdComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateGeneral);
             // 
             // supplierBindingSource
             // 
@@ -393,6 +403,7 @@
             this.categoryIdComboBox.Size = new System.Drawing.Size(340, 26);
             this.categoryIdComboBox.TabIndex = 15;
             this.categoryIdComboBox.ValueMember = "IdCategory";
+            this.categoryIdComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateGeneral);
             // 
             // categoryBindingSource
             // 
@@ -405,6 +416,7 @@
             this.discountNumericUpDown.Font = new System.Drawing.Font("Comic Sans MS", 10F);
             this.discountNumericUpDown.Location = new System.Drawing.Point(600, 313);
             this.discountNumericUpDown.Name = "discountNumericUpDown";
+            this.discountNumericUpDown.ReadOnly = true;
             this.discountNumericUpDown.Size = new System.Drawing.Size(340, 26);
             this.discountNumericUpDown.TabIndex = 17;
             // 
@@ -419,6 +431,7 @@
             0,
             0});
             this.productQuantityInStockNumericUpDown.Name = "productQuantityInStockNumericUpDown";
+            this.productQuantityInStockNumericUpDown.ReadOnly = true;
             this.productQuantityInStockNumericUpDown.Size = new System.Drawing.Size(340, 26);
             this.productQuantityInStockNumericUpDown.TabIndex = 19;
             // 
@@ -430,6 +443,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(340, 26);
             this.descriptionTextBox.TabIndex = 21;
+            this.descriptionTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateGeneral);
             // 
             // photoTextBox
             // 
@@ -437,7 +451,8 @@
             this.photoTextBox.Font = new System.Drawing.Font("Comic Sans MS", 10F);
             this.photoTextBox.Location = new System.Drawing.Point(600, 400);
             this.photoTextBox.Name = "photoTextBox";
-            this.photoTextBox.Size = new System.Drawing.Size(340, 26);
+            this.photoTextBox.ReadOnly = true;
+            this.photoTextBox.Size = new System.Drawing.Size(235, 26);
             this.photoTextBox.TabIndex = 23;
             // 
             // buttonSave
@@ -470,6 +485,20 @@
             // categoryTableAdapter
             // 
             this.categoryTableAdapter.ClearBeforeFill = true;
+            // 
+            // openFileDialogButton
+            // 
+            this.openFileDialogButton.Location = new System.Drawing.Point(841, 400);
+            this.openFileDialogButton.Name = "openFileDialogButton";
+            this.openFileDialogButton.Size = new System.Drawing.Size(99, 26);
+            this.openFileDialogButton.TabIndex = 25;
+            this.openFileDialogButton.Text = "Файл";
+            this.openFileDialogButton.UseVisualStyleBackColor = true;
+            this.openFileDialogButton.Click += new System.EventHandler(this.openFileDialogButton_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // CreateUpdateProductForm
             // 
@@ -527,5 +556,7 @@
         private medvedeva_vy_cosmeticDataSetTableAdapters.SupplierTableAdapter supplierTableAdapter;
         private System.Windows.Forms.BindingSource categoryBindingSource;
         private medvedeva_vy_cosmeticDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter;
+        private System.Windows.Forms.Button openFileDialogButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

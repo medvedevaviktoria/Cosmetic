@@ -1,4 +1,4 @@
-namespace Cosmetic.AppModels
+﻿namespace Cosmetic.AppModels
 {
     using System;
     using System.Collections.Generic;

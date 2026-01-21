@@ -80,11 +80,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConstants\FilePath.cs" />
+    <Compile Include="AppControls\OrderUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AppControls\OrderUserControl.Designer.cs">
+      <DependentUpon>OrderUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppControls\ProductUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AppControls\ProductUserControl.Designer.cs">
       <DependentUpon>ProductUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppForms\CreateUpdateOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppForms\CreateUpdateOrderForm.Designer.cs">
+      <DependentUpon>CreateUpdateOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AppForms\CreateUpdateProductForm.cs">
       <SubType>Form</SubType>
@@ -97,6 +109,12 @@
     </Compile>
     <Compile Include="AppForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppForms\OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppForms\OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AppForms\ParentForm.cs">
       <SubType>Form</SubType>
@@ -116,7 +134,7 @@
     <Compile Include="AppModels\Office.cs" />
     <Compile Include="AppModels\Order.cs" />
     <Compile Include="AppModels\OrderProduct.cs" />
-    <Compile Include="AppModels\OrderStatu.cs" />
+    <Compile Include="AppModels\OrderStatus.cs" />
     <Compile Include="AppModels\Product.cs" />
     <Compile Include="AppModels\ProductName.cs" />
     <Compile Include="AppModels\Role.cs" />
@@ -135,14 +153,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AppControls\OrderUserControl.resx">
+      <DependentUpon>OrderUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppControls\ProductUserControl.resx">
       <DependentUpon>ProductUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppForms\CreateUpdateOrderForm.resx">
+      <DependentUpon>CreateUpdateOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppForms\CreateUpdateProductForm.resx">
       <DependentUpon>CreateUpdateProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppForms\OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppForms\ParentForm.resx">
       <DependentUpon>ParentForm.cs</DependentUpon>

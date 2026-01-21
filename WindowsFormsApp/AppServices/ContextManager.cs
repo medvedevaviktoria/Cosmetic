@@ -14,5 +14,6 @@ namespace Cosmetic.AppServices
         public static ParentForm parentForm;
         public static LoginForm loginForm;
         public static ProductForm productForm;
+        public static OrderForm orderForm;
     }
 }
