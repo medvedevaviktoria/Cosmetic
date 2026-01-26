@@ -19,12 +19,14 @@ namespace Cosmetic.AppForms
         public CreateUpdateOrderForm()
         {
             InitializeComponent();
+            FormManager.PrepareForm("Добавить заказ", false);
             _order = new Order();
         }
 
         public CreateUpdateOrderForm(Order order)
         {
             InitializeComponent();
+            FormManager.PrepareForm("Редактировать заказ", false);
             orderDateDateTimePicker.Enabled = false;
             userIdComboBox.Enabled = false;
             officeIdComboBox.Enabled = false;

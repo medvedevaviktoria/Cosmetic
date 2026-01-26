@@ -47,9 +47,20 @@ namespace Cosmetic.AppForms
             // TODO: данная строка кода позволяет загрузить данные в таблицу "medvedeva_vy_cosmeticDataSet.ProductName". При необходимости она может быть перемещена или удалена.
             this.productNameTableAdapter.Fill(this.medvedeva_vy_cosmeticDataSet.ProductName);
 
-            FillForm();
 
             discountNumericUpDown.Maximum = _product.MaxProductDiscountAmount;
+            if (_product.IsNew())
+            {
+                productNameIdComboBox.SelectedIndex = 0;
+                unitOfMeasureIdComboBox.SelectedIndex = 0;
+                manufacturerIdComboBox.SelectedIndex = 0;
+                supplierIdComboBox.SelectedIndex = 0;
+                categoryIdComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                FillForm();
+            }
         }
 
         private void FillForm()
