@@ -31,8 +31,11 @@ namespace Cosmetic.AppForms
 
         public void SetFullNameAndRole()
         {
-            labelFIO.Text = ContextManager.user.UserFullName;
-            labelRole.Text = ContextManager.user.Role.RoleName;
+            if (ContextManager.user != null)
+            {
+                labelFIO.Text = ContextManager.user.UserFullName;
+                labelRole.Text = ContextManager.user.Role.RoleName;
+            }
         }
 
         public void SetTitle(string title)

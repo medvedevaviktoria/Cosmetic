@@ -23,8 +23,17 @@ namespace Cosmetic.AppForms
             InitializeComponent();
             ContextManager.productForm = this;
             comboBoxDiscount.SelectedIndex = 0;
-            ShowAddProductButton();
-            ShowOrderButton();
+            if (ContextManager.user != null)
+            {
+                ShowAddProductButton();
+                ShowOrderButton();
+                ShowAdvancedPanel();
+            }
+        }
+
+        private void ShowAdvancedPanel()
+        {
+            advancedPanel.Visible = (ContextManager.user.IsAdmin() || ContextManager.user.IsManager());
         }
 
         private void ShowOrderButton()
@@ -49,8 +58,7 @@ namespace Cosmetic.AppForms
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
-            SelectProducts();
-            ShowProducts();
+            Refresh();
         }
 
         private void SelectProducts()

@@ -34,7 +34,9 @@ namespace Cosmetic.AppForms
 
         private void buttonGuest_Click(object sender, EventArgs e)
         {
-            AuthManager.Login("c", "c");
+            ProductForm productForm = new ProductForm();
+            ContextManager.productForm.Show();
+            ContextManager.loginForm.Hide();
         }
     }
 }

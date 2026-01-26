@@ -5,6 +5,7 @@ using Cosmetic.AppServices;
 using System;
 using System.Data.Entity.Infrastructure;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,10 +19,23 @@ namespace Cosmetic.AppControls
         public ProductUserControl(Product product)
         {
             InitializeComponent();
-            ShowDeleteButton();
             _product = product;
             ShowProductInfo();
             HighlightGreatDiscount();
+            HighlightAbsent();
+            if (ContextManager.user != null)
+            {
+                ShowDeleteButton();
+            }
+        }
+
+        private void HighlightAbsent()
+        {
+            if (_product.ProductQuantityInStock == 0)
+            {
+                this.BackColor = System.Drawing.Color.LightBlue;
+            }
+
         }
 
         private void HighlightGreatDiscount()
@@ -61,7 +75,7 @@ namespace Cosmetic.AppControls
             {
                 tmpPrice = _product.Price * ((100 - _product.Discount) / 100);
             }
-            return $"Цена: {tmpPrice:F2} руб.";
+            return String.Format("Цена: {0} руб.", tmpPrice.ToString("F2", CultureInfo.InvariantCulture));
         }
 
         private void ShowDeleteButton()
@@ -85,11 +99,13 @@ namespace Cosmetic.AppControls
 
         private void ProductUserControl_Click(object sender, EventArgs e)
         {
-            if (!ContextManager.user.IsAdmin())
+            if (ContextManager.user != null)
             {
-                return;
+                if (!ContextManager.user.IsAdmin())
+                {
+                    return;
+                }
             }
-            
             CreateUpdateProductForm сreateUpdateProductForm = new CreateUpdateProductForm(_product);
 
             DialogResult saved = сreateUpdateProductForm.ShowDialog();

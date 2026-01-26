@@ -31,7 +31,7 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.buttonOrders = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.advancedPanel = new System.Windows.Forms.Panel();
             this.labelCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxDiscount = new System.Windows.Forms.ComboBox();
@@ -48,7 +48,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.advancedPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,7 +72,7 @@
             // 
             this.splitContainer2.Panel1.Controls.Add(this.buttonOrders);
             this.splitContainer2.Panel1.Controls.Add(this.buttonAdd);
-            this.splitContainer2.Panel1.Controls.Add(this.panel1);
+            this.splitContainer2.Panel1.Controls.Add(this.advancedPanel);
             // 
             // splitContainer2.Panel2
             // 
@@ -89,6 +89,7 @@
             this.buttonOrders.TabIndex = 2;
             this.buttonOrders.Text = "Заказы";
             this.buttonOrders.UseVisualStyleBackColor = true;
+            this.buttonOrders.Visible = false;
             this.buttonOrders.Click += new System.EventHandler(this.buttonOrders_Click);
             // 
             // buttonAdd
@@ -99,21 +100,23 @@
             this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Добавить товар";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Visible = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // panel1
+            // advancedPanel
             // 
-            this.panel1.Controls.Add(this.labelCount);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.comboBoxDiscount);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBoxSearch);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(849, 80);
-            this.panel1.TabIndex = 0;
+            this.advancedPanel.Controls.Add(this.labelCount);
+            this.advancedPanel.Controls.Add(this.label2);
+            this.advancedPanel.Controls.Add(this.comboBoxDiscount);
+            this.advancedPanel.Controls.Add(this.label1);
+            this.advancedPanel.Controls.Add(this.textBoxSearch);
+            this.advancedPanel.Controls.Add(this.groupBox1);
+            this.advancedPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.advancedPanel.Location = new System.Drawing.Point(0, 0);
+            this.advancedPanel.Name = "advancedPanel";
+            this.advancedPanel.Size = new System.Drawing.Size(849, 80);
+            this.advancedPanel.TabIndex = 0;
+            this.advancedPanel.Visible = false;
             // 
             // labelCount
             // 
@@ -226,8 +229,8 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.advancedPanel.ResumeLayout(false);
+            this.advancedPanel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -237,7 +240,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel advancedPanel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxSearch;

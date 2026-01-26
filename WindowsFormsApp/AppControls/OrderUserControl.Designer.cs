@@ -37,6 +37,10 @@
             this.officeLabel = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
             this.orderIdlabel = new System.Windows.Forms.Label();
+            this.labelSostav = new System.Windows.Forms.Label();
+            this.labelFIO = new System.Windows.Forms.Label();
+            this.labelPriceWithoutDiscount = new System.Windows.Forms.Label();
+            this.labelPriceWithDiscount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -46,15 +50,15 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.deliveryDateLabel);
-            this.panel1.Location = new System.Drawing.Point(620, 25);
+            this.panel1.Location = new System.Drawing.Point(620, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(100, 100);
+            this.panel1.Size = new System.Drawing.Size(133, 133);
             this.panel1.TabIndex = 0;
             this.panel1.Click += new System.EventHandler(this.order_Click);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(-1, -1);
+            this.label1.Location = new System.Drawing.Point(12, -1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 42);
             this.label1.TabIndex = 4;
@@ -64,7 +68,7 @@
             // 
             // deliveryDateLabel
             // 
-            this.deliveryDateLabel.Location = new System.Drawing.Point(-1, 49);
+            this.deliveryDateLabel.Location = new System.Drawing.Point(12, 52);
             this.deliveryDateLabel.Name = "deliveryDateLabel";
             this.deliveryDateLabel.Size = new System.Drawing.Size(100, 31);
             this.deliveryDateLabel.TabIndex = 5;
@@ -75,23 +79,26 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.buttonDelete);
+            this.panel2.Controls.Add(this.labelPriceWithDiscount);
+            this.panel2.Controls.Add(this.labelPriceWithoutDiscount);
+            this.panel2.Controls.Add(this.labelFIO);
+            this.panel2.Controls.Add(this.labelSostav);
             this.panel2.Controls.Add(this.orderDateLabel);
             this.panel2.Controls.Add(this.officeLabel);
             this.panel2.Controls.Add(this.statusLabel);
             this.panel2.Controls.Add(this.orderIdlabel);
-            this.panel2.Location = new System.Drawing.Point(23, 25);
+            this.panel2.Location = new System.Drawing.Point(7, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(581, 100);
+            this.panel2.Size = new System.Drawing.Size(607, 162);
             this.panel2.TabIndex = 1;
             this.panel2.Click += new System.EventHandler(this.order_Click);
             // 
             // buttonDelete
             // 
             this.buttonDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(102)))), ((int)(((byte)(0)))));
-            this.buttonDelete.Location = new System.Drawing.Point(456, 65);
+            this.buttonDelete.Location = new System.Drawing.Point(620, 140);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(120, 30);
+            this.buttonDelete.Size = new System.Drawing.Size(133, 27);
             this.buttonDelete.TabIndex = 10;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = false;
@@ -100,31 +107,31 @@
             // orderDateLabel
             // 
             this.orderDateLabel.AutoSize = true;
-            this.orderDateLabel.Location = new System.Drawing.Point(3, 75);
+            this.orderDateLabel.Location = new System.Drawing.Point(3, 44);
             this.orderDateLabel.Name = "orderDateLabel";
-            this.orderDateLabel.Size = new System.Drawing.Size(72, 13);
+            this.orderDateLabel.Size = new System.Drawing.Size(75, 13);
             this.orderDateLabel.TabIndex = 3;
-            this.orderDateLabel.Text = "Дата заказа";
+            this.orderDateLabel.Text = "Дата заказа:";
             this.orderDateLabel.Click += new System.EventHandler(this.order_Click);
             // 
             // officeLabel
             // 
             this.officeLabel.AutoSize = true;
-            this.officeLabel.Location = new System.Drawing.Point(3, 52);
+            this.officeLabel.Location = new System.Drawing.Point(3, 81);
             this.officeLabel.Name = "officeLabel";
-            this.officeLabel.Size = new System.Drawing.Size(38, 13);
+            this.officeLabel.Size = new System.Drawing.Size(41, 13);
             this.officeLabel.TabIndex = 2;
-            this.officeLabel.Text = "Адрес";
+            this.officeLabel.Text = "Адрес:";
             this.officeLabel.Click += new System.EventHandler(this.order_Click);
             // 
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(3, 28);
+            this.statusLabel.Location = new System.Drawing.Point(3, 63);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(41, 13);
+            this.statusLabel.Size = new System.Drawing.Size(44, 13);
             this.statusLabel.TabIndex = 1;
-            this.statusLabel.Text = "Статус";
+            this.statusLabel.Text = "Статус:";
             this.statusLabel.Click += new System.EventHandler(this.order_Click);
             // 
             // orderIdlabel
@@ -132,10 +139,46 @@
             this.orderIdlabel.AutoSize = true;
             this.orderIdlabel.Location = new System.Drawing.Point(3, 6);
             this.orderIdlabel.Name = "orderIdlabel";
-            this.orderIdlabel.Size = new System.Drawing.Size(16, 13);
+            this.orderIdlabel.Size = new System.Drawing.Size(19, 13);
             this.orderIdlabel.TabIndex = 0;
-            this.orderIdlabel.Text = "Id";
+            this.orderIdlabel.Text = "Id:";
             this.orderIdlabel.Click += new System.EventHandler(this.order_Click);
+            // 
+            // labelSostav
+            // 
+            this.labelSostav.AutoSize = true;
+            this.labelSostav.Location = new System.Drawing.Point(3, 25);
+            this.labelSostav.Name = "labelSostav";
+            this.labelSostav.Size = new System.Drawing.Size(46, 13);
+            this.labelSostav.TabIndex = 11;
+            this.labelSostav.Text = "Состав:";
+            // 
+            // labelFIO
+            // 
+            this.labelFIO.AutoSize = true;
+            this.labelFIO.Location = new System.Drawing.Point(3, 101);
+            this.labelFIO.Name = "labelFIO";
+            this.labelFIO.Size = new System.Drawing.Size(37, 13);
+            this.labelFIO.TabIndex = 12;
+            this.labelFIO.Text = "ФИО:";
+            // 
+            // labelPriceWithoutDiscount
+            // 
+            this.labelPriceWithoutDiscount.AutoSize = true;
+            this.labelPriceWithoutDiscount.Location = new System.Drawing.Point(3, 119);
+            this.labelPriceWithoutDiscount.Name = "labelPriceWithoutDiscount";
+            this.labelPriceWithoutDiscount.Size = new System.Drawing.Size(99, 13);
+            this.labelPriceWithoutDiscount.TabIndex = 13;
+            this.labelPriceWithoutDiscount.Text = "Цена(без скидки):";
+            // 
+            // labelPriceWithDiscount
+            // 
+            this.labelPriceWithDiscount.AutoSize = true;
+            this.labelPriceWithDiscount.Location = new System.Drawing.Point(3, 139);
+            this.labelPriceWithDiscount.Name = "labelPriceWithDiscount";
+            this.labelPriceWithDiscount.Size = new System.Drawing.Size(99, 13);
+            this.labelPriceWithDiscount.TabIndex = 14;
+            this.labelPriceWithDiscount.Text = "Цена(со скидкой):";
             // 
             // OrderUserControl
             // 
@@ -145,10 +188,11 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.buttonDelete);
             this.Margin = new System.Windows.Forms.Padding(50, 0, 0, 20);
             this.Name = "OrderUserControl";
             this.Padding = new System.Windows.Forms.Padding(20, 0, 0, 20);
-            this.Size = new System.Drawing.Size(740, 148);
+            this.Size = new System.Drawing.Size(762, 177);
             this.Click += new System.EventHandler(this.order_Click);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -168,5 +212,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label deliveryDateLabel;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Label labelPriceWithDiscount;
+        private System.Windows.Forms.Label labelPriceWithoutDiscount;
+        private System.Windows.Forms.Label labelFIO;
+        private System.Windows.Forms.Label labelSostav;
     }
 }

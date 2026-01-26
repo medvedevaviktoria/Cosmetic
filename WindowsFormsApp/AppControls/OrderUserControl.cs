@@ -36,9 +36,23 @@ namespace Cosmetic.AppControls
             orderIdlabel.Text = "ID: " + _order.IdOrder.ToString();
             deliveryDateLabel.Text = string.Format("{0:dd.MM.yyyy}", _order.OrderDeliveryDate); ;
             orderDateLabel.Text = "Дата заказа: " + string.Format("{0:dd.MM.yyyy}", _order.OrderDate);
-            officeLabel.Text = "Адрес пункта выдачи: " + _order.Office.OfficeAddress;
+            officeLabel.Text = $"Адрес пункта выдачи: {Program.context.Offices.Where(o=>o.IdOffice == _order.OfficeId).FirstOrDefault().OfficeAddress}";
             statusLabel.Text = "Статус заказа: " + _order.OrderStatus.OrderStatusName;
+            labelFIO.Text = $"ФИО: {_order.User.UserFullName}";
+            //labelPriceWithoutDiscount.Text = $"Цена(без скидки): {GetPriceWithoutDiscount()}";
         }
+
+        //private double GetPriceWithoutDiscount()
+        //{
+        //    double priceWithoutDiscount;
+        //    var tmpOrderProducts = Program.context.OrderProducts.Where(o => o.OrderId == _order.IdOrder).ToList();
+
+        //    foreach (var product in tmpOrderProducts)
+        //    {
+        //        priceWithoutDiscount += product.Product.Price
+        //    }
+
+        //}
 
         private void order_Click(object sender, EventArgs e)
         {

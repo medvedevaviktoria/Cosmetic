@@ -70,6 +70,7 @@
             this.categoryTableAdapter = new Cosmetic.medvedeva_vy_cosmeticDataSetTableAdapters.CategoryTableAdapter();
             this.openFileDialogButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             articleLabel = new System.Windows.Forms.Label();
             productNameIdLabel = new System.Windows.Forms.Label();
             unitOfMeasureIdLabel = new System.Windows.Forms.Label();
@@ -102,6 +103,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.openFileDialogButton);
             this.splitContainer1.Panel2.Controls.Add(this.buttonSave);
             this.splitContainer1.Panel2.Controls.Add(articleLabel);
@@ -349,6 +351,7 @@
             this.maxProductDiscountAmountNumericUpDown.ReadOnly = true;
             this.maxProductDiscountAmountNumericUpDown.Size = new System.Drawing.Size(340, 26);
             this.maxProductDiscountAmountNumericUpDown.TabIndex = 9;
+            this.maxProductDiscountAmountNumericUpDown.ValueChanged += new System.EventHandler(this.maxProductDiscountAmountNumericUpDown_ValueChanged);
             // 
             // manufacturerIdComboBox
             // 
@@ -500,6 +503,17 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(102)))), ((int)(((byte)(0)))));
+            this.button1.Location = new System.Drawing.Point(476, 601);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(309, 29);
+            this.button1.TabIndex = 26;
+            this.button1.Text = "Удалить товар";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CreateUpdateProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -558,5 +572,6 @@
         private medvedeva_vy_cosmeticDataSetTableAdapters.CategoryTableAdapter categoryTableAdapter;
         private System.Windows.Forms.Button openFileDialogButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -22,12 +23,15 @@ namespace Cosmetic.AppForms
         public CreateUpdateProductForm()
         {
             InitializeComponent();
+            FormManager.PrepareForm("Добавить товар", false);
             _product = new Product();
         }
         public CreateUpdateProductForm(Product product)
         {
             InitializeComponent();
+            FormManager.PrepareForm("Редактировать товар", false);
             _product = product;
+            articleTextBox.Enabled = false;
         }
 
         private void CreateUpdateProductForm_Load(object sender, EventArgs e)
@@ -42,7 +46,10 @@ namespace Cosmetic.AppForms
             this.unitOfMeasureTableAdapter.Fill(this.medvedeva_vy_cosmeticDataSet.UnitOfMeasure);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "medvedeva_vy_cosmeticDataSet.ProductName". При необходимости она может быть перемещена или удалена.
             this.productNameTableAdapter.Fill(this.medvedeva_vy_cosmeticDataSet.ProductName);
+
             FillForm();
+
+            discountNumericUpDown.Maximum = _product.MaxProductDiscountAmount;
         }
 
         private void FillForm()
@@ -50,7 +57,7 @@ namespace Cosmetic.AppForms
             articleTextBox.Text = _product.Article;
             productNameIdComboBox.SelectedValue = _product.ProductNameId;
             unitOfMeasureIdComboBox.SelectedValue= _product.UnitOfMeasureId;
-            priceTextBox.Text = _product.Price.ToString("F2");
+            priceTextBox.Text = _product.Price.ToString("F2", CultureInfo.InvariantCulture);
             maxProductDiscountAmountNumericUpDown.Value = _product.MaxProductDiscountAmount;
             manufacturerIdComboBox.SelectedValue = _product.ManufacturerId;
             supplierIdComboBox.SelectedValue = _product.SupplierId;
@@ -63,7 +70,7 @@ namespace Cosmetic.AppForms
 
         private void CreateUpdateProductForm_Shown(object sender, EventArgs e)
         {
-            FormManager.PrepareForm("Добавить/Редактировать товар", false);
+            
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -77,9 +84,8 @@ namespace Cosmetic.AppForms
 
             try
             {
-                string newFileName = SaveImage();
-                photoTextBox.Text = newFileName;
-                DeleteOldPhoto();
+                string newfilename = SaveImage();
+                photoTextBox.Text = newfilename;
                 FillModelFields();
                 if (_product.IsNew())
                 {
@@ -108,7 +114,7 @@ namespace Cosmetic.AppForms
             // PKGH Файл не выбирали, но нажали кнопку "Сохранить"
             if (string.IsNullOrEmpty(openFileDialog1.FileName) || openFileDialog1.FileName == "openFileDialog1")
             {
-                return "";
+                return _product.Photo;
             }
             
             Image originalImage = Image.FromFile(openFileDialog1.FileName);
@@ -123,6 +129,7 @@ namespace Cosmetic.AppForms
             // PKGH Сохраняем изображение
             resizedImage.Save(savePath);
             // PKGH Освобождаем ресурсы
+            DeleteOldPhoto();
             originalImage.Dispose();
             resizedImage.Dispose();
             return fileName;
@@ -152,8 +159,8 @@ namespace Cosmetic.AppForms
             _product.Article = articleTextBox.Text;
             _product.ProductNameId = (int)productNameIdComboBox.SelectedValue;
             _product.UnitOfMeasureId = (int)unitOfMeasureIdComboBox.SelectedValue;
-            float.TryParse(priceTextBox.Text, out float result);
-            _product.Price = result;
+            float.TryParse(priceTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out float val);
+            _product.Price = Math.Round(val, 2);
             _product.MaxProductDiscountAmount = (int)maxProductDiscountAmountNumericUpDown.Value;
             _product.ManufacturerId = (int)manufacturerIdComboBox.SelectedValue;
             _product.SupplierId = (int)supplierIdComboBox.SelectedValue;
@@ -197,6 +204,42 @@ namespace Cosmetic.AppForms
             {
                 e.Cancel = true; // PKGH Предотвратить потерю фокуса.
                 FormManager.ErrorProvider.SetError(priceTextBox, "Вы бесплатно раздаете?"); // PKGH показать подсказку.
+            }
+        }
+
+        private void maxProductDiscountAmountNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (maxProductDiscountAmountNumericUpDown.Value > discountNumericUpDown.Maximum)
+            {
+                discountNumericUpDown.Maximum = maxProductDiscountAmountNumericUpDown.Value;
+            }
+            else if (maxProductDiscountAmountNumericUpDown.Value < discountNumericUpDown.Value)
+            {
+                discountNumericUpDown.Value = maxProductDiscountAmountNumericUpDown.Value;
+                discountNumericUpDown.Maximum = maxProductDiscountAmountNumericUpDown.Value;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult toBeDeleted = MessageBox.Show("Удалить?", "Удалить?", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+            if (toBeDeleted == DialogResult.OK)
+            {
+                Product product = Program.context.Products.Where(p => p.IdProduct == _product.IdProduct).FirstOrDefault();
+
+                try
+                {
+                    Program.context.Products.Remove(_product);
+                    Program.context.SaveChanges();
+                    ContextManager.productForm.RefreshList();
+                    FileManager.DeleteFile(_product.Photo);
+                    DialogResult = DialogResult.OK;
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show("Товар заказан. Его нельзя удалить.", "Товар заказан. Его нельзя удалить.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
