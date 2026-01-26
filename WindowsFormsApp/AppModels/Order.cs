@@ -14,6 +14,58 @@
             return (IdOrder == 0);
         }
 
+        public double TotalPriceWithDiscount
+        {
+            get
+            {
+                double sum = 0;
+
+                foreach (var orderProducts in this.OrderProducts)
+                {
+                    double price = orderProducts.Product.Price;
+                    double discount = orderProducts.Product.Discount;
+                    double priceWithDiscount = price * ((100 - discount) / 100);
+                    sum += priceWithDiscount * orderProducts.Amount;
+                }
+                return sum;
+            }
+        }
+
+        public double TotalPriceWithoutDiscount
+        {
+            get
+            {
+                double sum = 0;
+
+                foreach (var orderProducts in this.OrderProducts)
+                {
+                    double price = orderProducts.Product.Price;
+                    sum += price * orderProducts.Amount;
+                }
+                return sum;
+            }
+        }
+
+        public double TotalDiscountPercent
+        {
+            get
+            {
+                double sum = TotalPriceWithoutDiscount;
+                double sumWithDiscount = TotalPriceWithDiscount;
+
+                if (sum == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (sum - sumWithDiscount) / sum * 100;
+                }
+            }
+        }
+
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {

@@ -522,7 +522,6 @@
             this.Name = "CreateUpdateProductForm";
             this.Text = "CreateUpdateProductForm";
             this.Load += new System.EventHandler(this.CreateUpdateProductForm_Load);
-            this.Shown += new System.EventHandler(this.CreateUpdateProductForm_Shown);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

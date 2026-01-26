@@ -32,15 +32,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.deliveryDateLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.buttonDelete = new System.Windows.Forms.Button();
+            this.labelPriceWithDiscount = new System.Windows.Forms.Label();
+            this.labelPriceWithoutDiscount = new System.Windows.Forms.Label();
+            this.labelFIO = new System.Windows.Forms.Label();
+            this.labelSostav = new System.Windows.Forms.Label();
             this.orderDateLabel = new System.Windows.Forms.Label();
             this.officeLabel = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
             this.orderIdlabel = new System.Windows.Forms.Label();
-            this.labelSostav = new System.Windows.Forms.Label();
-            this.labelFIO = new System.Windows.Forms.Label();
-            this.labelPriceWithoutDiscount = new System.Windows.Forms.Label();
-            this.labelPriceWithDiscount = new System.Windows.Forms.Label();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -93,16 +93,41 @@
             this.panel2.TabIndex = 1;
             this.panel2.Click += new System.EventHandler(this.order_Click);
             // 
-            // buttonDelete
+            // labelPriceWithDiscount
             // 
-            this.buttonDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(102)))), ((int)(((byte)(0)))));
-            this.buttonDelete.Location = new System.Drawing.Point(620, 140);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(133, 27);
-            this.buttonDelete.TabIndex = 10;
-            this.buttonDelete.Text = "Удалить";
-            this.buttonDelete.UseVisualStyleBackColor = false;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.labelPriceWithDiscount.AutoSize = true;
+            this.labelPriceWithDiscount.Location = new System.Drawing.Point(3, 139);
+            this.labelPriceWithDiscount.Name = "labelPriceWithDiscount";
+            this.labelPriceWithDiscount.Size = new System.Drawing.Size(99, 13);
+            this.labelPriceWithDiscount.TabIndex = 14;
+            this.labelPriceWithDiscount.Text = "Цена(со скидкой):";
+            // 
+            // labelPriceWithoutDiscount
+            // 
+            this.labelPriceWithoutDiscount.AutoSize = true;
+            this.labelPriceWithoutDiscount.Location = new System.Drawing.Point(3, 119);
+            this.labelPriceWithoutDiscount.Name = "labelPriceWithoutDiscount";
+            this.labelPriceWithoutDiscount.Size = new System.Drawing.Size(99, 13);
+            this.labelPriceWithoutDiscount.TabIndex = 13;
+            this.labelPriceWithoutDiscount.Text = "Цена(без скидки):";
+            // 
+            // labelFIO
+            // 
+            this.labelFIO.AutoSize = true;
+            this.labelFIO.Location = new System.Drawing.Point(3, 101);
+            this.labelFIO.Name = "labelFIO";
+            this.labelFIO.Size = new System.Drawing.Size(37, 13);
+            this.labelFIO.TabIndex = 12;
+            this.labelFIO.Text = "ФИО:";
+            // 
+            // labelSostav
+            // 
+            this.labelSostav.AutoSize = true;
+            this.labelSostav.Location = new System.Drawing.Point(3, 25);
+            this.labelSostav.Name = "labelSostav";
+            this.labelSostav.Size = new System.Drawing.Size(49, 13);
+            this.labelSostav.TabIndex = 11;
+            this.labelSostav.Text = "Состав: ";
             // 
             // orderDateLabel
             // 
@@ -144,41 +169,16 @@
             this.orderIdlabel.Text = "Id:";
             this.orderIdlabel.Click += new System.EventHandler(this.order_Click);
             // 
-            // labelSostav
+            // buttonDelete
             // 
-            this.labelSostav.AutoSize = true;
-            this.labelSostav.Location = new System.Drawing.Point(3, 25);
-            this.labelSostav.Name = "labelSostav";
-            this.labelSostav.Size = new System.Drawing.Size(46, 13);
-            this.labelSostav.TabIndex = 11;
-            this.labelSostav.Text = "Состав:";
-            // 
-            // labelFIO
-            // 
-            this.labelFIO.AutoSize = true;
-            this.labelFIO.Location = new System.Drawing.Point(3, 101);
-            this.labelFIO.Name = "labelFIO";
-            this.labelFIO.Size = new System.Drawing.Size(37, 13);
-            this.labelFIO.TabIndex = 12;
-            this.labelFIO.Text = "ФИО:";
-            // 
-            // labelPriceWithoutDiscount
-            // 
-            this.labelPriceWithoutDiscount.AutoSize = true;
-            this.labelPriceWithoutDiscount.Location = new System.Drawing.Point(3, 119);
-            this.labelPriceWithoutDiscount.Name = "labelPriceWithoutDiscount";
-            this.labelPriceWithoutDiscount.Size = new System.Drawing.Size(99, 13);
-            this.labelPriceWithoutDiscount.TabIndex = 13;
-            this.labelPriceWithoutDiscount.Text = "Цена(без скидки):";
-            // 
-            // labelPriceWithDiscount
-            // 
-            this.labelPriceWithDiscount.AutoSize = true;
-            this.labelPriceWithDiscount.Location = new System.Drawing.Point(3, 139);
-            this.labelPriceWithDiscount.Name = "labelPriceWithDiscount";
-            this.labelPriceWithDiscount.Size = new System.Drawing.Size(99, 13);
-            this.labelPriceWithDiscount.TabIndex = 14;
-            this.labelPriceWithDiscount.Text = "Цена(со скидкой):";
+            this.buttonDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(102)))), ((int)(((byte)(0)))));
+            this.buttonDelete.Location = new System.Drawing.Point(620, 140);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(133, 27);
+            this.buttonDelete.TabIndex = 10;
+            this.buttonDelete.Text = "Удалить";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // OrderUserControl
             // 

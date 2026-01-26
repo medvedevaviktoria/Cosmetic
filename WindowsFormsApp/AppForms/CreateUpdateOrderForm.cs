@@ -25,9 +25,10 @@ namespace Cosmetic.AppForms
         public CreateUpdateOrderForm(Order order)
         {
             InitializeComponent();
+            orderDateDateTimePicker.Enabled = false;
+            userIdComboBox.Enabled = false;
+            officeIdComboBox.Enabled = false;
             _order = order;
-            FillForm();
-
         }
 
         private void FillForm()
@@ -49,6 +50,10 @@ namespace Cosmetic.AppForms
 
             string[] excludedValues = { "a", "b", "c"};
             userBindingSource.DataSource = Program.context.Users.Where(u => !excludedValues.Contains(u.UserFullName)).ToList();
+            if (!_order.IsNew())
+            {
+                FillForm();
+            }
         }
 
         private int GenerateNextReceiptCode()
@@ -61,7 +66,7 @@ namespace Cosmetic.AppForms
         {
             if (!this.ValidateChildren())
             {
-                MessageBox.Show("Иправьте ошибки в форме перед сохранением.", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Иcправьте ошибки в форме перед сохранением.", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

@@ -68,10 +68,6 @@ namespace Cosmetic.AppForms
             photoTextBox.Text = _product.Photo;
         }
 
-        private void CreateUpdateProductForm_Shown(object sender, EventArgs e)
-        {
-            
-        }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {

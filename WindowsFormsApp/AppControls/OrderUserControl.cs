@@ -36,27 +36,28 @@ namespace Cosmetic.AppControls
             orderIdlabel.Text = "ID: " + _order.IdOrder.ToString();
             deliveryDateLabel.Text = string.Format("{0:dd.MM.yyyy}", _order.OrderDeliveryDate); ;
             orderDateLabel.Text = "Дата заказа: " + string.Format("{0:dd.MM.yyyy}", _order.OrderDate);
-            officeLabel.Text = $"Адрес пункта выдачи: {Program.context.Offices.Where(o=>o.IdOffice == _order.OfficeId).FirstOrDefault().OfficeAddress}";
+            officeLabel.Text = $"Адрес пункта выдачи: {Program.context.Offices.Where(o => o.IdOffice == _order.OfficeId).FirstOrDefault().OfficeAddress}";
             statusLabel.Text = "Статус заказа: " + _order.OrderStatus.OrderStatusName;
             labelFIO.Text = $"ФИО: {_order.User.UserFullName}";
-            //labelPriceWithoutDiscount.Text = $"Цена(без скидки): {GetPriceWithoutDiscount()}";
+            GetOrderSostav();
+            labelPriceWithoutDiscount.Text = "Цена(без скидки): " + _order.TotalPriceWithoutDiscount.ToString() + "руб.";
+            labelPriceWithDiscount.Text = "Цена(со скидкой): " + _order.TotalPriceWithDiscount.ToString() + "руб.";
         }
 
-        //private double GetPriceWithoutDiscount()
-        //{
-        //    double priceWithoutDiscount;
-        //    var tmpOrderProducts = Program.context.OrderProducts.Where(o => o.OrderId == _order.IdOrder).ToList();
+        private void GetOrderSostav()
+        {
+            var tmpOrderProducts = Program.context.OrderProducts.Where(o => o.OrderId == _order.IdOrder).ToList();
 
-        //    foreach (var product in tmpOrderProducts)
-        //    {
-        //        priceWithoutDiscount += product.Product.Price
-        //    }
-
-        //}
+            foreach (var orderProduct in tmpOrderProducts)
+            {
+                var product = orderProduct.Product;
+                labelSostav.Text += $" | {product.ProductName.ProductName1} x{orderProduct.Amount} ";
+            }
+        }
 
         private void order_Click(object sender, EventArgs e)
         {
-            if (!ContextManager.user.IsAdmin())
+            if (!ContextManager.user.IsAdmin() && !ContextManager.user.IsManager())
             {
                 return;
             }
@@ -88,6 +89,5 @@ namespace Cosmetic.AppControls
                 }
             }
         }
-
     }
 }

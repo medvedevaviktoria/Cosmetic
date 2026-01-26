@@ -16,16 +16,18 @@ namespace Cosmetic.AppForms
 {
     public partial class OrderForm : ParentForm
     {
+        private List<Order> _orders;
         public OrderForm()
         {
             InitializeComponent();
             ContextManager.orderForm = this;
-            ShowAddOrderButton();
+            comboBoxDiscount.SelectedIndex = 0;
+            ShowAdvancedPanel();
         }
 
-        private void ShowAddOrderButton()
+        private void ShowAdvancedPanel()
         {
-            addOrderButton.Visible = ContextManager.user.IsAdmin();
+            advancedPanel.Visible = (ContextManager.user.IsAdmin() || ContextManager.user.IsManager());
         }
 
         private void OrderForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -63,13 +65,48 @@ namespace Cosmetic.AppForms
         public void RefreshList()
         {
             ClearOrders();
+            SelectOrders();
             ShowOrders();
+        }
+
+        private void SelectOrders()
+        {
+            var tmpOrders = Program.context.Orders.ToList();
+
+            if (comboBoxDiscount.SelectedIndex > 0)
+            {
+                switch (comboBoxDiscount.SelectedIndex)
+                {
+                    case 1:
+                        tmpOrders = tmpOrders.Where(o => o.TotalDiscountPercent < 10).ToList();
+                        break;
+                    case 2:
+                        tmpOrders = tmpOrders.Where(o => o.TotalDiscountPercent >= 10 && o.TotalDiscountPercent < 15).ToList();
+                        break;
+                    case 3:
+                        tmpOrders = tmpOrders.Where(o => o.TotalDiscountPercent >= 15).ToList();
+                        break;
+                }
+            }
+
+
+
+            bool lessInput = radioButtonLess.Checked;
+            if (lessInput)
+            {
+                tmpOrders = tmpOrders.OrderBy(o => o.TotalPriceWithDiscount).ToList(); ;
+            }
+            else
+            {
+                tmpOrders = tmpOrders.OrderByDescending(o => o.TotalPriceWithDiscount).ToList(); ;
+            }
+
+            _orders = tmpOrders;
         }
 
         private void ShowOrders()
         {
-            List<Order> orders = Program.context.Orders.OrderBy(o => o.OrderDate).ToList();
-            foreach (Order order in orders)
+            foreach (Order order in _orders)
             {
                 flowLayoutPanel1.Controls.Add(new OrderUserControl(order));
             }
@@ -78,6 +115,21 @@ namespace Cosmetic.AppForms
         private void ClearOrders()
         {
             flowLayoutPanel1.Controls.Clear();
+        }
+
+        private void comboBoxDiscount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshList();
+        }
+
+        private void radioButtonLess_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshList();
+        }
+
+        private void radioButtonMore_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshList();
         }
     }
 }
