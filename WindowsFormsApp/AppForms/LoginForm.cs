@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp;
 
 namespace Cosmetic.AppForms
 {
@@ -24,7 +25,7 @@ namespace Cosmetic.AppForms
         {
             try
             {
-                AuthManager.Login(textBoxLogin.Text.Trim(), textBoxPassword.Text.Trim());
+                Login(textBoxLogin.Text.Trim(), textBoxPassword.Text.Trim());
             }
             catch
             {
@@ -35,6 +36,23 @@ namespace Cosmetic.AppForms
         private void buttonGuest_Click(object sender, EventArgs e)
         {
             ProductForm productForm = new ProductForm();
+            ContextManager.productForm.Show();
+            ContextManager.loginForm.Hide();
+        }
+
+        public void Login(string login, string password)
+        {
+            var user = Program.context.Users
+                .Where(u => u.Login == login && u.Password == password)
+                .FirstOrDefault();
+
+            if (user == null)
+            {
+                throw new Exception();
+            }
+
+            ContextManager.user = user;
+            var productForm = new ProductForm();
             ContextManager.productForm.Show();
             ContextManager.loginForm.Hide();
         }

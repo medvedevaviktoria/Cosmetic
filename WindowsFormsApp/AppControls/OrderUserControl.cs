@@ -34,7 +34,7 @@ namespace Cosmetic.AppControls
         private void ShowData()
         {
             orderIdlabel.Text = "ID: " + _order.IdOrder.ToString();
-            deliveryDateLabel.Text = string.Format("{0:dd.MM.yyyy}", _order.OrderDeliveryDate); ;
+            deliveryDateLabel.Text = string.Format("{0:dd.MM.yyyy}", _order.OrderDeliveryDate);
             orderDateLabel.Text = "Дата заказа: " + string.Format("{0:dd.MM.yyyy}", _order.OrderDate);
             officeLabel.Text = $"Адрес пункта выдачи: {Program.context.Offices.Where(o => o.IdOffice == _order.OfficeId).FirstOrDefault().OfficeAddress}";
             statusLabel.Text = "Статус заказа: " + _order.OrderStatus.OrderStatusName;

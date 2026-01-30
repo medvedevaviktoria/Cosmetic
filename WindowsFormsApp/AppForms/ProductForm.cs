@@ -58,7 +58,7 @@ namespace Cosmetic.AppForms
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
-            Refresh();
+            RefreshList();
         }
 
         private void SelectProducts()
@@ -98,7 +98,7 @@ namespace Cosmetic.AppForms
                 }
             }
 
-            labelCount.Text = $"{tmpProducts.Count()} из {Program.context.Products.Count()}";
+            labelCount.Text = $"Найдено: {tmpProducts.Count()} из {Program.context.Products.Count()}";
 
             _products = tmpProducts.ToList();
         }
